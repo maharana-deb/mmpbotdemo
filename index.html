@@ -15,6 +15,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      padding-bottom: 100px; /* space for chatbot */
     }
 
     header {
@@ -25,6 +26,7 @@
       font-size: 1.6rem;
       font-weight: 600;
       letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     main {
@@ -39,6 +41,10 @@
 
     .content {
       max-width: 700px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     }
 
     .content h1 {
@@ -54,21 +60,67 @@
       color: #444;
     }
 
-    .logo {
-      margin: 30px 0;
-    }
-
     footer {
       background-color: #005bab;
       color: #fff;
       text-align: center;
       padding: 15px 0;
       font-size: 0.9rem;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* Make sure chat widget doesn't overlap footer */
-    body {
-      padding-bottom: 60px;
+    /* ====== Chat Widget Styling Fixes ====== */
+    .kore-chat-widget,
+    #chatContainer,
+    .kore-chat-window {
+      bottom: 90px !important; /* lifts above footer */
+      right: 25px !important;
+      z-index: 9999 !important;
+    }
+
+    .kore-launcher {
+      background-color: #005bab !important;
+      border-radius: 50% !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .kore-chat-header {
+      background-color: #005bab !important;
+      color: #fff !important;
+      font-weight: 600 !important;
+      border-bottom: none !important;
+    }
+
+    .from-bot, .bot-msg {
+      background-color: #e8f2fc !important; /* soft blue */
+      color: #333 !important;
+      border-radius: 10px !important;
+      padding: 8px 12px !important;
+    }
+
+    .from-user, .user-msg {
+      background-color: #005bab !important;
+      color: #fff !important;
+      border-radius: 10px !important;
+      padding: 8px 12px !important;
+    }
+
+    .sendButton, button[type="submit"] {
+      background-color: #005bab !important;
+      color: #fff !important;
+      border-radius: 6px !important;
+      border: none !important;
+    }
+
+    /* Prevent overlap on mobile */
+    @media (max-width: 600px) {
+      .kore-chat-widget, #chatContainer, .kore-chat-window {
+        bottom: 120px !important;
+        right: 15px !important;
+      }
+      .content {
+        padding: 25px;
+      }
     }
   </style>
 </head>
@@ -98,7 +150,13 @@
     © 2025 Medication Management Partners | Demo powered by Kore.ai
   </footer>
 
-  <script src='https://cdn.jsdelivr.net/npm/kore-web-sdk@11.19.0/dist/umd/kore-web-sdk-umd-chat.min.js'></script> <script> KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = '705f1c3359a848dbad0e4772b024c545af6b62ac7cb54ba6b28815488c75689estbc'; new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig); </script>
+  <!-- 🔹 Kore.ai Chatbot SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/kore-web-sdk@11.19.0/dist/umd/kore-web-sdk-umd-chat.min.js"></script>
 
+  <script>
+    // 🔹 Your Kore.ai Chatbot Configuration
+    KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = '705f1c3359a848dbad0e4772b024c545af6b62ac7cb54ba6b28815488c75689estbc';
+    new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig);
+  </script>
 </body>
 </html>
